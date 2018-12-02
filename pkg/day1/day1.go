@@ -1,19 +1,19 @@
-package main
+package day1
 
 import (
-	"fmt"
 	"io/ioutil"
 	"strconv"
 	"strings"
 )
 
 func retrieveInput() []string {
-	input, _ := ioutil.ReadFile("day1.input")
+	input, _ := ioutil.ReadFile("input/day1.txt")
 	lines := strings.Split(string(input), "\n")
 	return lines
 }
 
-func part1() int64 {
+// Part1 Calculates the answer for part 1
+func Part1() int64 {
 	input := retrieveInput()
 	var frequency int64
 	for _, line := range input {
@@ -23,7 +23,8 @@ func part1() int64 {
 	return frequency
 }
 
-func part2() int64 {
+// Part2 Calculates the answer for part 2
+func Part2() int64 {
 	input := retrieveInput()
 	var frequency int64
 	frequencies := make(map[int64]int64)
@@ -44,9 +45,4 @@ func part2() int64 {
 			i++
 		}
 	}
-}
-
-func main() {
-	fmt.Printf("Part 1 Answer: %v\n", part1())
-	fmt.Printf("Part 2 Answer: %v\n", part2())
 }
