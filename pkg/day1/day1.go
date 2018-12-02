@@ -25,13 +25,11 @@ func Part2() int64 {
 	frequencies[0] = 1
 	i := 0
 	for {
-		if input[i] != "" {
-			number, _ := strconv.ParseInt(input[i], 10, 64)
-			frequency += number
-			frequencies[frequency]++
-			if frequencies[frequency] == 2 {
-				return frequency
-			}
+		number, _ := strconv.ParseInt(input[i], 10, 64)
+		frequency += number
+		frequencies[frequency]++
+		if frequencies[frequency] == 2 {
+			return frequency
 		}
 		if i+1 == len(input) {
 			i = 0
