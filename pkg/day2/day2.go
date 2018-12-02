@@ -38,3 +38,37 @@ func Part1() string {
 	}
 	return fmt.Sprint(twos * threes)
 }
+
+func letterPosition(character string) int {
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+	letters := make(map[string]int)
+	for index, letter := range alphabet {
+		letters[string(letter)] = index + 1
+	}
+	return letters[string(character)]
+}
+
+func match(a string, b string) bool {
+	isMatch := false
+	for index, character := range a {
+		if character == b[index] {
+			isMatch = true
+			continue
+		}
+	}
+	return isMatch
+}
+
+// Part2 Calculate answer to day 2 part 2
+func Part2() string {
+	input := input.Retrieve("2")
+	a, b := "", ""
+	for index, line := range input {
+		for i := index + 1; a == ""; i++ {
+			if match(line, input[i]) {
+				a, b = line, input[i]
+			}
+		}
+	}
+	return fmt.Sprintf("%v - %v", a, b)
+}

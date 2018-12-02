@@ -16,6 +16,7 @@ func main() {
 			fmt.Printf("Day 1 Part 1: %v\n", day1.Part2())
 		case "2":
 			fmt.Printf("Day 2 Part 1: %v\n", day2.Part1())
+			fmt.Printf("Day 2 Part 1: %v\n", day2.Part2())
 		default:
 			println("Not a valid day")
 		}
