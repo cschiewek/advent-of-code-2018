@@ -1,10 +1,27 @@
 package day2
 
 import (
+	"bytes"
 	"fmt"
 
 	"../input"
 )
+
+// Part1 Calculate answer to day 2 part 1
+func Part1() string {
+	input := input.Retrieve("2")
+	twos, threes := 0, 0
+	for _, line := range input {
+		two, three := characterCounts(line)
+		if two {
+			twos++
+		}
+		if three {
+			threes++
+		}
+	}
+	return fmt.Sprint(twos * threes)
+}
 
 func characterCounts(str string) (two bool, three bool) {
 	counts := make(map[string]int)
@@ -23,52 +40,39 @@ func characterCounts(str string) (two bool, three bool) {
 	return
 }
 
-// Part1 Calculate answer to day 2 part 1
-func Part1() string {
-	input := input.Retrieve("2")
-	twos, threes := 0, 0
-	for _, line := range input {
-		two, three := characterCounts(line)
-		if two {
-			twos++
-		}
-		if three {
-			threes++
-		}
-	}
-	return fmt.Sprint(twos * threes)
-}
-
-func letterPosition(character string) int {
-	alphabet := "abcdefghijklmnopqrstuvwxyz"
-	letters := make(map[string]int)
-	for index, letter := range alphabet {
-		letters[string(letter)] = index + 1
-	}
-	return letters[string(character)]
-}
-
-func match(a string, b string) bool {
-	isMatch := false
-	for index, character := range a {
-		if character == b[index] {
-			isMatch = true
-			continue
-		}
-	}
-	return isMatch
-}
-
 // Part2 Calculate answer to day 2 part 2
 func Part2() string {
+	a, b := findMatch()
+	var buffer bytes.Buffer
+	for i := 0; i != len(a); i++ {
+		if a[i] == b[i] {
+			buffer.WriteByte(a[i])
+		}
+	}
+	return fmt.Sprintf(buffer.String())
+}
+
+func findMatch() (string, string) {
 	input := input.Retrieve("2")
-	a, b := "", ""
 	for index, line := range input {
-		for i := index + 1; a == ""; i++ {
+		for i := index + 1; i != len(input); i++ {
 			if match(line, input[i]) {
-				a, b = line, input[i]
+				return line, input[i]
 			}
 		}
 	}
-	return fmt.Sprintf("%v - %v", a, b)
+	return "", ""
+}
+
+func match(a string, b string) bool {
+	differences := 0
+	for index, character := range a {
+		if string(character) != string(b[index]) {
+			differences++
+		}
+		if differences > 1 {
+			return false
+		}
+	}
+	return true
 }
