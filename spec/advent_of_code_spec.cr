@@ -1,9 +1,9 @@
 require "./spec_helper"
 
-describe . do
+describe AdventOfCode do
   # TODO: Write tests
 
-  it "works" do
-    false.should eq(true)
+  it "VERSION" do
+    AdventOfCode::VERSION.should eq("0.1.0")
   end
 end
