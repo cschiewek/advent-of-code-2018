@@ -1,0 +1,13 @@
+name: .
+version: 0.1.0
+
+authors:
+  - Curtis <curtis.schiewek@gmail.com>
+
+targets:
+  .:
+    main: src/..cr
+
+crystal: 0.27.0
+
+license: MIT
